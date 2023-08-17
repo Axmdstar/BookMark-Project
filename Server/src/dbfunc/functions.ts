@@ -87,18 +87,17 @@ export async function GetBkItems(Bkid:string): Promise<GetBkItemResult> {
     const [result] = await pool.query<GetBkItemType[]>(stt);
 
     const {txt, url, imgs, title, bookmarkid} = result[0]
-     
+    console.log(result[0]);
+
     const arrResult:GetBkItemResult = {
         title : title,
         bookmarkid: bookmarkid,
-        url: url.split(";"),
-        txt: txt.split(";"),
-        imgs: imgs.split(";"),
+        url: url == null ? null : url.split(";"),
+        txt: txt == null ? null : txt.split(";"),
+        imgs: imgs == null ? null : imgs.split(";"),
     }
-    
     return arrResult;
 }
-
 
 //! insert 
 export async function NewUser(data:usrtype, id:string ): Promise<boolean> {

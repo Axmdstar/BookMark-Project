@@ -16,7 +16,7 @@ import MainBk from './Components/Navbar';
 //* ##user homepage when logged-in
 //* ##user home
 //  ##add text,link,image comp
-//  bk like
+//  ##bk like
 //* explore other users
 //  select like and expect
 

@@ -105,7 +105,6 @@ app.post("/signup",async (req:Request, res:Response) => {
         const {username} = req.body;
         const cookies = CreateToken({id, username});
         res.cookie("bookmark", cookies,{httpOnly:true}).send("Succesful");
-
     }else {
         res.status(500).send({error:"Duplicate Values"});
     }    

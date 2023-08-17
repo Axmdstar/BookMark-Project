@@ -18,9 +18,9 @@ export interface GetBkItemType extends RowDataPacket {
 export interface GetBkItemResult  {
     bookmarkid: string,
     title: string,
-    txt: string[],
-    url: string[],
-    imgs: string[]
+    txt: string[] | null,
+    url: string[] | null,
+    imgs: string[] | null
 };
 
 
