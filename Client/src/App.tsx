@@ -33,9 +33,12 @@ function App() {
   
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet"></link>
-      {userdata.auth ? <MainBk/> : <Forms/> }
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet"></link>
+      </head>
+        {userdata.auth ? <MainBk /> : <Forms />}  
+      
     </>
   )
 }

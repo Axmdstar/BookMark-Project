@@ -106,27 +106,26 @@
 -- select distinct bm.bookmarkid, Count( bookmarkid ) as likeNumber  from bookmark.like, bm
 -- group by bookmark.like.bookmark;
 
--- select count(bk) as likes from like_tb
--- where bk = "iopjkl"
--- group by bk;
-
--- ChatGpt Ans
--- SELECT b.bookmarkid AS bookmark_id,b.title, COUNT(l.userid) AS like_count
--- FROM bm AS b
--- LEFT JOIN like_tb AS l ON b.bookmarkid = l.bkqe
+-- # ChatGpt Ans #
+-- SELECT b.bookmarkid AS bookmark_id, b.title, COUNT(l.userid) AS like_count, usr.name FROM bm AS b
+-- LEFT JOIN like_tb AS l ON l.bk = b.bookmarkid
+-- left join user_tb As usr ON usr.idUser = b.usrid
 -- GROUP BY b.bookmarkid, b.title;
 
--- MyTake 
--- select bookmarkid, title, usrid, count(lk.bk) from bm
--- left join like_tb as lk on lk.bk = bookmarkid
--- where usrid = ""
--- group by  bookmarkid, title
+-- # MyTake #
+-- DELIMITER 
+select b.bookmarkid, b.title, usr.name, count(lk.userid) from bm as b
+left join like_tb as lk on lk.bk = b.bookmarkid
+left join user_tb as usr on usr.idUser = b.usrid
+group by  b.bookmarkid, b.title;
 
--- GROUP_CONCAT(DISTINCT txt.paragraph SEPARATOR ';') AS paragraphs,
---     GROUP_CONCAT(DISTINCT lid.url SEPARATOR ';') AS urls,
---     GROUP_CONCAT(DISTINCT img.imageurl SEPARATOR ';') AS image_urls
+-- select * from bm
+-- select * from user_tb;
+-- select * from like_tb;
 
--- select  bookmarkid, title, group_concat(distinct txt.paragraph SEPARATOR ';') as txt
+-- select  bookmarkid, title,
+--   Getting txt, link, image as string separated by ; So in the frontend split it by ;
+--   group_concat(distinct txt.paragraph SEPARATOR ';') as txt
 -- , group_concat(distinct lid.url SEPARATOR ';') as url
 -- , group_concat(distinct img.imageurl SEPARATOR ';' ) as imgs from bm
 -- left join image_tb as img on img.bmid = bookmarkid
@@ -138,6 +137,7 @@
 -- INSERT INTO bm(usrid, bookmarkid, title)
 -- values("qazxsw","uu32k","How");
 
+-- select * from user_tb;
 
 
 

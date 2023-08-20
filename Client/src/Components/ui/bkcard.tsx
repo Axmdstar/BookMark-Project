@@ -4,7 +4,8 @@ import {AiFillHeart} from 'react-icons/ai';
 interface bkarrobj {
     bookmarkid : string,
     title : string,
-    likes:number
+    likes:number,
+    name?:string
 }
 
 interface BkmkProps {
@@ -25,17 +26,20 @@ const Bkcard = ({ bkarr, GetBkid } :BkmkProps ) => {
         {
             return(
                 <div className="py-2">
-                    
-                <div >
-                    <button id={bk.bookmarkid} onClick={GetBkid} className="p-5 flex w-full rounded-md bg-gradient-to-b from-slate-50 to-yellow-50 drop-shadow-lg" key={bk.bookmarkid} >
-                        <h4 className="text-2xl text-orange-950 font-semibold ">{bk.title}</h4>
-                            <div className="ml-auto flex gap-1 items-center">
+                    <div >
+                        <button id={bk.bookmarkid} onClick={GetBkid} className="p-5 flex w-full rounded-md bg-gradient-to-b from-slate-50 to-yellow-50 drop-shadow-lg" key={bk.bookmarkid} >
+                            <div className='text-left'>
+                                <h4 className="text-2xl text-orange-950 font-semibold ">{bk.title}</h4>
+                                <p className='pt-2'>{bk.name}</p>
+                            </div>
+                            
+                            <div className="self-end ml-auto flex gap-1 items-center">
                                 <AiFillHeart color="#5a189a" />
                                 <p >{bk.likes}</p>
                             </div>
-                    </button>
-                    
-                </div>
+
+                        </button>
+                    </div>
                 </div>
             )
         }) ??   <div className='text-center w-full p-6 '>

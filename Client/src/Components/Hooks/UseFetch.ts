@@ -4,6 +4,7 @@ import axios from 'axios';
 
 interface bkarrobj {
     bookmarkid : string,
+    userName?: string,
     title : string,
     usrid: string,
     likes:number
@@ -59,6 +60,18 @@ const useFetch = () => {
         
     }
 
+    const ExplorePage = () => {
+        const endpoint: string = "/getExplore";
+
+        axios.get(endpoint)
+            .then( (res) => {
+                console.log("Explore data", res);
+                setBkarr(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
     const GetBkid = (e:React.MouseEvent) => {
         const Bkid: string = e.currentTarget.id;
@@ -114,6 +127,7 @@ const useFetch = () => {
         currentid,
         setBkselected,
         setBkitems,
+        ExplorePage,
         setBkarr,
         SendToDb,
         GetBkid,

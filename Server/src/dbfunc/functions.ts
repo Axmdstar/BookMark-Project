@@ -63,12 +63,23 @@ export async function CheckId(idUser:string):Promise<boolean>{
 
 export async function GetUsrBk(UsrId:string) {
     const stt:string = `select bookmarkid, title, usrid, count(lk.bk) as likes from bm
-    left join like_tb as lk on lk.bk = bookmarkid
-    where usrid = "${UsrId}"
-    group by  bookmarkid, title`;
+                        left join like_tb as lk on lk.bk = bookmarkid
+                        where usrid = "${UsrId}"
+                        group by bookmarkid, title`;
     const [result] = await pool.query<getbks[]>(stt);
     console.log("DB >>>: ", result);
 
+    return result;
+}
+
+export async function GetExploreBks() {
+    const stt: string = `select b.bookmarkid, b.title, usr.name, count(lk.userid) as likes from bm as b
+                         left join like_tb as lk on lk.bk = b.bookmarkid
+                         left join user_tb as usr on usr.idUser = b.usrid
+                         group by b.bookmarkid, b.title;`;
+
+    const [result] = await pool.query<getbks[]>(stt);
+    console.log(result);
     return result;
 }
 

@@ -12,7 +12,8 @@ export default defineConfig({
       "/getItems": "http://localhost:2000",
       "/signup": "http://localhost:2000",
       "/addBk": "http://localhost:2000",
-      "/additem": "http://localhost:2000"
+      "/additem": "http://localhost:2000",
+      "/getExplore": "http://localhost:2000"
     }
   },
   plugins: [react()],

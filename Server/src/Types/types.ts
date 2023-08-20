@@ -2,6 +2,7 @@ import { RowDataPacket } from "mysql2";
 
 export interface getbks extends RowDataPacket {
     usrid : string,
+    name?: string,
     bookmarkid : string,
     title : string,
     likes: number

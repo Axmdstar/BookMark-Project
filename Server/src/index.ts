@@ -57,7 +57,11 @@ app.get("/browserinfo", authUser, (req:Request, res:Response)=> {
     res.send(req.userauth);
 })
 
-
+app.get("/getExplore", authUser, async (req:Request, res:Response) => {
+    const Bks = await dbfunc.GetExploreBks();
+    console.log(Bks);
+    res.send(Bks);
+})
 
 app.get('/getbks/:id', async (req:Request, res:Response) => {
   const usrid: string = req.params.id;
@@ -73,6 +77,13 @@ app.get("/getItems/:id", async (req:Request, res:Response) => {
     const result = await dbfunc.GetBkItems(Bkid);
     res.status(200).send(result);
 })
+
+
+
+
+
+
+
 
 // user related Api's 
 app.post("/login", async (req:Request, res:Response) => {
