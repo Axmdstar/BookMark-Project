@@ -34,10 +34,8 @@ const Userbkmk = () => {
         } else {
             const newbk = {bookmarkid:bkid, title, usrid, likes: 0} ;
             setBkarr([...bkarr, newbk]);
-            // data to db 
             SendToDb(newbk);
         }
-
         setAddform(!addform)
     };
 
@@ -65,15 +63,15 @@ const Userbkmk = () => {
     }
     
     // style var 
-    const buttonstyle = "w-full bg-purple-300 flex justify-center py-2 mt-2 rounded-md text-lg hover:bg-purple-400 focus:bg-purple-500";
+    const buttonstyle =" flex w-14 justify-center py-2 shadow-purple-400 hover:shadow-orange-300 duration-75 bg-OvsP-p500 shadow-md rounded-md text-lg hover:shadow-lg hover:bg-OvsP-o500 focus:bg-orange-500";
 
     return ( 
-    <div className="py-3 bg-gradient-to-b from-white  via-purple-100 h-screen ">
-        <h1 className="p-5 text-3xl font-semibold font-customtt text-purple-900">Your Bookmarks</h1>
+    <div className="py-3 ">
+        <h1 className="p-5 pl-0 py-7 text-3xl font-semibold font-customtt text-orange-400">Your Bookmarks</h1>
         
-        <div className="w-[96%] h-screen m-auto relative ">
+        <div className="m-auto  pt-4 relative flex flex-col gap-5">
+            {!bkselected && <div className="w-full self-baseline"> <button className={buttonstyle} onClick={() => setAddform(!addform)}> <FaPlus color="white"/></button></div>}
             {bkselected ? <Bookmarkitems currentid={currentid} back={back}/> : <Bkcard bkarr={bkarr} GetBkid={GetBkid} /> }
-            {!bkselected && <button className={buttonstyle} onClick={() => setAddform(!addform)}> <FaPlus color="white"/></button>}
         </div>
         
     </div>

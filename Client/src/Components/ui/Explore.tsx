@@ -13,7 +13,7 @@ const Explore = () => {
     }, []);
     
     return ( 
-        <div>
+        <div className="h-screen">
             <h2 className="p-5 text-3xl font-semibold font-customtt text-purple-900">Explore</h2>
             {bkselected ? <Bookmarkitems currentid={currentid} back={back}/> : <Bkcard bkarr={bkarr} GetBkid={GetBkid} /> }            
         </div>

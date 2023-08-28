@@ -1,4 +1,5 @@
 import {AiFillHeart} from 'react-icons/ai';
+import useFetch from '../Hooks/UseFetch';
 
 
 interface bkarrobj {
@@ -16,7 +17,9 @@ interface BkmkProps {
 
 
 const Bkcard = ({ bkarr, GetBkid } :BkmkProps ) => {
+    const {liked} = useFetch();
 
+    
     
     return(
         <div className="md:grid grid-cols-4 gap-3 ">
@@ -26,19 +29,19 @@ const Bkcard = ({ bkarr, GetBkid } :BkmkProps ) => {
         {
             return(
                 <div className="py-2">
-                    <div >
-                        <button id={bk.bookmarkid} onClick={GetBkid} className="p-5 flex w-full rounded-md bg-gradient-to-b from-slate-50 to-yellow-50 drop-shadow-lg" key={bk.bookmarkid} >
+                    <div key={bk.bookmarkid} className="p-5 flex w-full duration-75 rounded-md shadow-md shadow-purple-400 bg-gradient-to-l from-10% to-purple-50 from-purple-100 hover:to-orange-50 hover:from-orange-100 hover:shadow-orange-400">
+                        <button id={bk.bookmarkid} onClick={GetBkid} className='w-full' >
                             <div className='text-left'>
-                                <h4 className="text-2xl text-orange-950 font-semibold ">{bk.title}</h4>
+                                <h4 className="text-2xl text-purple-400 hover:text-orange-400 font-semibold ">{bk.title}</h4>
                                 <p className='pt-2'>{bk.name}</p>
                             </div>
-                            
-                            <div className="self-end ml-auto flex gap-1 items-center">
-                                <AiFillHeart color="#5a189a" />
-                                <p >{bk.likes}</p>
+                        </button>
+
+                            <div className="self-end ml-auto flex gap-1 items-center hover:text-purple-700" id={bk.bookmarkid} onClick={()=>{liked(bk.bookmarkid)}}>
+                                <AiFillHeart className="text-purple-400 drop-shadow-md duration-75 hover:scale-150 hover:text-OvsP-o500 hover:drop-shadow-lg" />
+                                <p className='text-purple-400'>{bk.likes}</p>
                             </div>
 
-                        </button>
                     </div>
                 </div>
             )

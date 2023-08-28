@@ -16,6 +16,17 @@ export interface GetBkItemType extends RowDataPacket {
     imgs: string
 };
 
+export interface NewBkitemType {
+    id:string,
+    item:string,
+    type: string
+}
+
+export interface likedtype {
+    usrid:string,
+    bkid:string
+}
+
 export interface GetBkItemResult  {
     bookmarkid: string,
     title: string,

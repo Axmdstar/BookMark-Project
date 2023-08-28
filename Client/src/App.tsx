@@ -7,18 +7,24 @@ import MainBk from './Components/Navbar';
 
 
 //* to-dos
-//* Show Errors in Ui
-//* signup
-//* check password and username is empty
 //* home page
 //* Loading state or page of skelaten 
 // ! add isloading state in the useFetch()
-//* ##user homepage when logged-in
-//* ##user home
-//  ##add text,link,image comp
-//  ##bk like
-//* explore other users
-//  select like and expect
+//* ? About
+//* redesign userpage, explorepage, itemspage
+// Logout
+//* setting ? why
+//* proper footer 
+//* fix dropdown still focus when changing pages
+// Show Errors in Ui
+// signup
+// check password and username is empty
+// user homepage when logged-in
+// user home
+//  add text,link,image comp
+// bk like
+// explore other users
+// select like and expect
 
 
 
@@ -33,12 +39,12 @@ function App() {
   
   return (
     <>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet"></link>
-      </head>
-        {userdata.auth ? <MainBk /> : <Forms />}  
-      
+      <div className=' bg-gradient-to-b from-slate-50 to-purple-200 overflow-auto h-screen '>
+        {userdata.auth ? <MainBk /> : <Forms />}
+        <footer className="p-4 pb-0 text-center text-purple-700 pt-[170px]">
+          <p>Devaxmed <span>®</span></p>
+        </footer>
+      </div>
     </>
   )
 }

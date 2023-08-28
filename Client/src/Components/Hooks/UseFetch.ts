@@ -52,8 +52,7 @@ const useFetch = () => {
                     if (res.data !== "") {
 
                         console.log("bk result, Number of bk", res.data.length, res);
-                        res.data.length === 0 ? setBkarr(undefined) : setBkarr(res.data) ;
-
+                        res.data.length === 0 ? setBkarr(undefined) : setBkarr(res.data) ;      
                     }
                 })
                 .catch((err) => console.log(err))
@@ -112,12 +111,24 @@ const useFetch = () => {
             item,
             type
         }
-
         axios.post(endpoint,payload)
             .then((res) => {
                 console.log(res);
             })
     }
+
+    const liked = (bkid:string, usrid:string = userdata.idUser) => {
+        console.log('bkid, usrid :>> ', bkid, usrid);
+
+        const endpoint:string = "/like";
+        const payload = {bkid, usrid}
+        axios.post(endpoint, payload)
+            .then((res) => {
+                console.log("success");
+                console.log(res);
+            })
+    }
+
 
     return {
         userdata,
@@ -125,6 +136,7 @@ const useFetch = () => {
         bkselected,
         Bkitems,
         currentid,
+        liked,
         setBkselected,
         setBkitems,
         ExplorePage,

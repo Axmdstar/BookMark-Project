@@ -70,14 +70,18 @@ app.get('/getbks/:id', async (req:Request, res:Response) => {
   res.status(200).send(result);
 })
 
-
-
 app.get("/getItems/:id", async (req:Request, res:Response) => {  
     const Bkid: string = req.params.id
     const result = await dbfunc.GetBkItems(Bkid);
     res.status(200).send(result);
 })
 
+
+app.get("/LogOut", (req:Request, res:Response) => {
+    console.log(req.cookies.bookmark);
+    res.cookie("bookmark",req.cookies,{maxAge:0, httpOnly:true})
+    res.send("why")
+})
 
 
 
@@ -133,5 +137,12 @@ app.post("/additem",async (req:Request, res:Response) => {
     console.log('req.body :>> ', req.body);
     dbfunc.NewBkitem(req.body);
 })  
+
+app.post('/like',async (req:Request, res:Response) => {
+    
+    // console.log(req.body);   
+    dbfunc.liked(req.body);
+    res.send('POST request to the homepage')
+})
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`))

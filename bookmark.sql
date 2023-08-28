@@ -114,10 +114,10 @@
 
 -- # MyTake #
 -- DELIMITER 
-select b.bookmarkid, b.title, usr.name, count(lk.userid) from bm as b
-left join like_tb as lk on lk.bk = b.bookmarkid
-left join user_tb as usr on usr.idUser = b.usrid
-group by  b.bookmarkid, b.title;
+-- select b.bookmarkid, b.title, usr.name, count(lk.userid) from bm as b
+-- left join like_tb as lk on lk.bk = b.bookmarkid
+-- left join user_tb as usr on usr.idUser = b.usrid
+-- group by  b.bookmarkid, b.title;
 
 -- select * from bm
 -- select * from user_tb;
@@ -137,7 +137,9 @@ group by  b.bookmarkid, b.title;
 -- INSERT INTO bm(usrid, bookmarkid, title)
 -- values("qazxsw","uu32k","How");
 
--- select * from user_tb;
+-- select * from like_tb;
+-- Insert into like_tb(idLike, userid, bk)
+-- values();
 
 
 

@@ -1,7 +1,9 @@
 import { createPool } from "mysql2";
 import dotenv from 'dotenv';
-import { Errortype, GetBkItemResult, GetBkItemType, NewItemdata, getbks, usrtype } from "../Types/types";
+import { Errortype, GetBkItemResult, GetBkItemType, getbks, usrtype, NewBkitemType, likedtype } from "../Types/types";
 import { nanoid } from "nanoid";
+import { query } from "express";
+
 
 
 
@@ -98,7 +100,7 @@ export async function GetBkItems(Bkid:string): Promise<GetBkItemResult> {
     const [result] = await pool.query<GetBkItemType[]>(stt);
 
     const {txt, url, imgs, title, bookmarkid} = result[0]
-    console.log(result[0]);
+    console.log("GetBKitems Function", result[0]);
 
     const arrResult:GetBkItemResult = {
         title : title,
@@ -133,11 +135,12 @@ export async function NewBk(data:getbks) {
     const result = pool.query(stt);
 }
 
-
-interface NewBkitemType {
-    id:string,
-    item:string,
-    type: string
+export async function liked(ids:likedtype) {
+    const likeid:string = nanoid();
+    const stt: string = `Insert into like_tb(idLike, userid, bk)
+                         values("${likeid}","${ids.usrid}","${ids.bkid}");`
+    console.log(stt);
+    pool.query(stt);
 }
 
 export async function NewBkitem(data: NewBkitemType) {
