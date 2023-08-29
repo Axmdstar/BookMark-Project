@@ -30,20 +30,26 @@ import MainBk from './Components/Navbar';
 
 function App() {
   // Custom Hook
-  const{ userdata, BrowserInfo } = useFetch()
-  
+  const{ userdata, BrowserInfo, ErrMge } = useFetch()
   
   useEffect(() => {
     BrowserInfo();
   },[])   
   
+  if (ErrMge) {
+    alert(ErrMge)
+  }
+
   return (
     <>
-      <div className=' bg-gradient-to-b from-slate-50 to-purple-200 overflow-auto h-screen '>
+      <div className=' bg-gradient-to-b from-slate-50 to-violet-200 overflow-auto h-screen relative '>
+        
         {userdata.auth ? <MainBk /> : <Forms />}
-        <footer className="p-4 pb-0 text-center text-purple-700 pt-[170px]">
+
+        <footer className="p-4 pb-0 text-center text-violet-700 pt-[170px]">
           <p>Devaxmed <span>®</span></p>
         </footer>
+        
       </div>
     </>
   )

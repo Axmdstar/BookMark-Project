@@ -29,17 +29,17 @@ const Bkcard = ({ bkarr, GetBkid } :BkmkProps ) => {
         {
             return(
                 <div className="py-2">
-                    <div key={bk.bookmarkid} className="p-5 flex w-full duration-75 rounded-md shadow-md shadow-purple-400 bg-gradient-to-l from-10% to-purple-50 from-purple-100 hover:to-orange-50 hover:from-orange-100 hover:shadow-orange-400">
+                    <div key={bk.bookmarkid} className="p-5 flex w-full duration-75 rounded-md shadow-md shadow-violet-400 bg-gradient-to-l from-10% to-violet-50 from-violet-100 hover:to-orange-50 hover:from-orange-100 hover:shadow-orange-400">
                         <button id={bk.bookmarkid} onClick={GetBkid} className='w-full' >
                             <div className='text-left'>
-                                <h4 className="text-2xl text-purple-400 hover:text-orange-400 font-semibold ">{bk.title}</h4>
-                                <p className='pt-2'>{bk.name}</p>
+                                <h4 className="text-2xl text-violet-400 hover:text-orange-400 font-semibold ">{bk.title}</h4>
+                                <p className='pt-2 text-violet-400'>{bk.name}</p>
                             </div>
                         </button>
 
-                            <div className="self-end ml-auto flex gap-1 items-center hover:text-purple-700" id={bk.bookmarkid} onClick={()=>{liked(bk.bookmarkid)}}>
-                                <AiFillHeart className="text-purple-400 drop-shadow-md duration-75 hover:scale-150 hover:text-OvsP-o500 hover:drop-shadow-lg" />
-                                <p className='text-purple-400'>{bk.likes}</p>
+                            <div className="self-end ml-auto flex gap-1 items-center hover:text-violet-700" id={bk.bookmarkid} onClick={()=>{liked(bk.bookmarkid)}}>
+                                <AiFillHeart className="text-violet-400 drop-shadow-md duration-75 hover:scale-150 hover:text-OvsP-o500 hover:drop-shadow-lg" />
+                                <p className='text-violet-400'>{bk.likes}</p>
                             </div>
 
                     </div>

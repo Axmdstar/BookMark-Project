@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Login from "./Login";
 import { SignUp } from "./SignUp";
+// import useFetch from "./Hooks/UseFetch";
 
 
 export const Forms  = () => {
+    // const{ErrMge} = useFetch();
 
     const [Signing, setSigning] = useState(false);    
     return ( 

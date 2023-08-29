@@ -10,7 +10,7 @@ interface bkarrobj {
     likes:number
 }
 
-// title: 'Demo', bookmarkid: 'asdfg', url: Array(2), txt: Array(1), imgs: Array(1)
+
 interface BkitemType {
     title: string,
     bookmarkid: string,
@@ -26,11 +26,12 @@ const useFetch = () => {
     const [Bkitems, setBkitems] = useState<BkitemType>();
     const [currentid, setCurrentid] = useState<string>("");
     const [bkselected, setBkselected] = useState(false);
+    const [ErrMge, setErrMge] = useState("");
     //! Items In the bk state here 
 
     // Checks the user Cookies 
     const BrowserInfo = () => {
-    
+            
             axios.get("/browserinfo")
               .then((res) => {
                 console.log('result for browser Info :>> ', res);
@@ -38,7 +39,7 @@ const useFetch = () => {
                   setUserdata(res.data)
                 }
               })
-              .catch((err) => console.log(err))            
+              .catch((err) => setErrMge("Failed to Connect to the Server!!"))            
     }
 
     // User Profile Bookmark 
@@ -136,6 +137,7 @@ const useFetch = () => {
         bkselected,
         Bkitems,
         currentid,
+        ErrMge,
         liked,
         setBkselected,
         setBkitems,
