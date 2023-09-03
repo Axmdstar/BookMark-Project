@@ -48,34 +48,8 @@ app.use( (req:Request, res:Response, next:NextFunction)=> {
     next();
 })
 
-app.get("/api", authUser, (req:Request , res:Response ) => {
-    res.send({"test": "hello"});
-})
 
-
-app.get("/browserinfo", authUser, (req:Request, res:Response)=> {
-    res.send(req.userauth);
-})
-
-app.get("/getExplore", authUser, async (req:Request, res:Response) => {
-    const Bks = await dbfunc.GetExploreBks();
-    console.log(Bks);
-    res.send(Bks);
-})
-
-app.get('/getbks/:id', async (req:Request, res:Response) => {
-  const usrid: string = req.params.id;
-  
-  const result = await dbfunc.GetUsrBk(usrid);
-  res.status(200).send(result);
-})
-
-app.get("/getItems/:id", async (req:Request, res:Response) => {  
-    const Bkid: string = req.params.id
-    const result = await dbfunc.GetBkItems(Bkid);
-    res.status(200).send(result);
-})
-
+//! User Related 
 
 app.get("/LogOut", (req:Request, res:Response) => {
     console.log(req.cookies.bookmark);
@@ -83,13 +57,6 @@ app.get("/LogOut", (req:Request, res:Response) => {
     res.send("why")
 })
 
-
-
-
-
-
-
-// user related Api's 
 app.post("/login", async (req:Request, res:Response) => {
     
     console.log("Got the data from formsData ", req);
@@ -110,7 +77,6 @@ app.post("/login", async (req:Request, res:Response) => {
     }  
 })
 
-
 app.post("/signup",async (req:Request, res:Response) => {
     console.log("data from the signup form", req.body);
     const id:string = nanoid();
@@ -126,6 +92,43 @@ app.post("/signup",async (req:Request, res:Response) => {
     
 })
 
+app.get("/browserinfo", authUser, (req:Request, res:Response)=> {
+    res.send(req.userauth);
+})
+
+
+
+//! Bookmark related
+app.get("/getExplore", authUser, async (req:Request, res:Response) => {
+    const Bks = await dbfunc.GetExploreBks();
+    console.log(Bks);
+    res.send(Bks);
+})
+
+app.get('/getbks/:id', async (req:Request, res:Response) => {
+  const usrid: string = req.params.id;
+  
+  const result = await dbfunc.GetUsrBk(usrid);
+  res.status(200).send(result);
+})
+
+app.get("/getItems/:id", async (req:Request, res:Response) => {  
+    const Bkid: string = req.params.id
+    const result = await dbfunc.GetBkItems(Bkid);
+    res.status(200).send(result);
+})
+
+
+
+
+
+
+
+
+
+
+//! Updating bkmks related Api's (CURD) 
+
 app.post('/addBk', async (req:Request, res:Response) => {
     console.log("New Bookmark", req.body);
     
@@ -139,10 +142,20 @@ app.post("/additem",async (req:Request, res:Response) => {
 })  
 
 app.post('/like',async (req:Request, res:Response) => {
-    
-    // console.log(req.body);   
     dbfunc.liked(req.body);
     res.send('POST request to the homepage')
 })
+
+app.delete("/delete/:type/:item",async (req:Request, res:Response) => {
+    const item:string = req.params.item;
+    const type:string = req.params.type;
+    console.log(item , " ", type);
+    dbfunc.DeleteFromDB(type, item);
+
+    res.send("Item deleted");
+})
+
+
+
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`))

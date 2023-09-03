@@ -169,3 +169,33 @@ export async function NewBkitem(data: NewBkitemType) {
     }
     const result = pool.query(query);
 }
+
+export async function DeleteFromDB(type:string, item:string) {
+    
+    let query:string;
+
+    switch (type) {
+        case "Notes":
+            query = `delete from text_tb
+                     where paragraph = '${item}'`;       
+            break;
+
+        case "Links":
+            query = `delete from link_tb
+                     where url = '${item}'`;              
+            break;
+            
+        case "Images":
+            query = `delete from image_tb
+                     where imageurl = '${item}'`;       
+            break;
+
+        default:
+            throw new Error(`Unexpected data.type: ${type}`);
+            
+            break;
+    }
+
+    pool.query(query);
+
+}

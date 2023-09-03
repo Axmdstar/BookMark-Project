@@ -39,7 +39,7 @@ const useFetch = () => {
                   setUserdata(res.data)
                 }
               })
-              .catch((err) => setErrMge("Failed to Connect to the Server!!"))            
+              .catch(() => setErrMge("Failed to Connect to the Server!!"))            
     }
 
     // User Profile Bookmark 
@@ -118,6 +118,18 @@ const useFetch = () => {
             })
     }
 
+    const Deleteitemdb = (item:string, type:string) => {
+        console.log(item, type);
+        if (type == "Images" || "Links") {
+            item = encodeURIComponent(item);
+        }
+        const endpoint:string = `/delete/${type}/${item}`;
+        axios.delete(endpoint)
+            .then((res) => {
+                console.log(res);
+            })
+    }
+
     const liked = (bkid:string, usrid:string = userdata.idUser) => {
         console.log('bkid, usrid :>> ', bkid, usrid);
 
@@ -146,6 +158,7 @@ const useFetch = () => {
         SendToDb,
         GetBkid,
         GetBkitems,
+        Deleteitemdb,
         userBookmarks,
         BrowserInfo,
         NewItemtoDb,
