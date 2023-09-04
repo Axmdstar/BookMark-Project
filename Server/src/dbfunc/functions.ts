@@ -2,7 +2,7 @@ import { createPool } from "mysql2";
 import dotenv from 'dotenv';
 import { Errortype, GetBkItemResult, GetBkItemType, getbks, usrtype, NewBkitemType, likedtype } from "../Types/types";
 import { nanoid } from "nanoid";
-import { query } from "express";
+
 
 
 

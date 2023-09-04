@@ -1,80 +1,63 @@
--- CREATE TABLE IF NOT EXISTS `bookmark`.`User` (
---   `idUser` VARCHAR(12) NOT NULL,
---   `name` VARCHAR(45) NOT NULL,
---   PRIMARY KEY (`idUser`),
---   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE);
-
--- CREATE TABLE IF NOT EXISTS `bookmark`.`Bookmark` (
---   `usrid` VARCHAR(12) NOT NULL,
---   `bookmarkid` VARCHAR(45) NOT NULL,
---   `title` VARCHAR(45) NOT NULL,
---   UNIQUE INDEX `usrid_UNIQUE` (`usrid` ASC) VISIBLE,
---   PRIMARY KEY (`bookmarkid`),
---   UNIQUE INDEX `bookmarkid_UNIQUE` (`bookmarkid` ASC) VISIBLE,
---   CONSTRAINT `bookmarkuser`
---     FOREIGN KEY (`usrid`)
---     REFERENCES `bookmark`.`User` (`idUser`)
---     ON DELETE NO action
---     ON UPDATE NO ACTION);
-
-
--- CREATE TABLE IF NOT EXISTS `bookmark`.`Like` (
---   `idLike` VARCHAR(12) NOT NULL,
---   `userid` VARCHAR(45) NULL,
---   `bookmark` VARCHAR(45) NULL,
---   PRIMARY KEY (`idLike`),
---   UNIQUE INDEX `idLike_UNIQUE` (`idLike` ASC) VISIBLE,
---   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE,
---   INDEX `bm_idx` (`bookmark` ASC) VISIBLE,
---   CONSTRAINT `user`
---     FOREIGN KEY (`userid`)
---     REFERENCES `bookmark`.`User` (`idUser`)
---     ON DELETE NO ACTION
---     ON UPDATE NO ACTION,
---   CONSTRAINT `bm`
---     FOREIGN KEY (`bookmark`)
---     REFERENCES `bookmark`.`Bookmark` (`bookmarkid`)
---     ON DELETE NO ACTION
---     ON UPDATE NO ACTION);
---     
---  CREATE TABLE IF NOT EXISTS `bookmark`.`Image` (
---   `idImage` VARCHAR(12) NOT NULL,
---   `imageurl` VARCHAR(45) NOT NULL,
---   `bmid` VARCHAR(45) NOT NULL,
---   PRIMARY KEY (`idImage`),
---   UNIQUE INDEX `bmid_UNIQUE` (`bmid` ASC) VISIBLE,
---   CONSTRAINT `bm_id_img`
---     FOREIGN KEY (`bmid`)
---     REFERENCES `bookmark`.`Bookmark` (`bookmarkid`)
---     ON DELETE NO ACTION
---     ON UPDATE NO ACTION);
-
-
---   CREATE TABLE IF NOT EXISTS `bookmark`.`Text` (
---   `idText` VARCHAR(12) NOT NULL,
---   `paragraph` VARCHAR(45) NOT NULL,
---   `bmid` VARCHAR(45) NOT NULL,
---   PRIMARY KEY (`idText`),
---   UNIQUE INDEX `bmid_UNIQUE` (`bmid` ASC) VISIBLE,
---   CONSTRAINT `bm_id_txt`
---     FOREIGN KEY (`bmid`)
---     REFERENCES `bookmark`.`Bookmark` (`bookmarkid`)
---     ON DELETE NO ACTION
---     ON UPDATE NO ACTION);
---   
---   
--- CREATE TABLE IF NOT EXISTS `bookmark`.`Link` (
---   `idLink` VARCHAR(12) NOT NULL,
---   `url` VARCHAR(45) NOT NULL,
---   `bmid` VARCHAR(45) NOT NULL,
---   PRIMARY KEY (`idLink`),
---   UNIQUE INDEX `bmid_UNIQUE` (`bmid` ASC) VISIBLE,
---   CONSTRAINT `bm_id_link`
---     FOREIGN KEY (`bmid`)
---     REFERENCES `bookmark`.`Bookmark` (`bookmarkid`)
---     ON DELETE NO ACTION
---     ON UPDATE NO ACTION);
-
+CREATE TABLE IF NOT EXISTS  `bm` (
+   `usrid` varchar(12) NOT NULL,
+   `bookmarkid` varchar(45) NOT NULL,
+   `title` varchar(45) NOT NULL,
+   PRIMARY KEY (`bookmarkid`),
+   UNIQUE KEY `bookmarkid_UNIQUE` (`bookmarkid`),
+   KEY `Users id_idx` (`usrid`),
+   CONSTRAINT `Users id` FOREIGN KEY (`usrid`) REFERENCES `user_tb` (`idUser`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ 
+ CREATE TABLE `user_tb` (
+   `idUser` varchar(25) NOT NULL,
+   `name` varchar(45) NOT NULL,
+   `password` varchar(16) DEFAULT NULL,
+   `email` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`idUser`),
+   UNIQUE KEY `name_UNIQUE` (`name`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ 
+ CREATE TABLE `text_tb` (
+   `text_id` varchar(45) NOT NULL,
+   `paragraph` varchar(45) NOT NULL,
+   `bmid` varchar(45) NOT NULL,
+   PRIMARY KEY (`text_id`),
+   KEY `text and bookmark_idx` (`bmid`),
+   CONSTRAINT `text and bookmark` FOREIGN KEY (`bmid`) REFERENCES `bm` (`bookmarkid`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ 
+ CREATE TABLE `link_tb` (
+   `link_id` varchar(45) NOT NULL,
+   `url` varchar(200) NOT NULL,
+   `bmid` varchar(45) NOT NULL,
+   PRIMARY KEY (`link_id`),
+   KEY `bookmarks Id_idx` (`bmid`),
+   CONSTRAINT `bookmarks Id` FOREIGN KEY (`bmid`) REFERENCES `bm` (`bookmarkid`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ 
+ CREATE TABLE `image_tb` (
+   `image_id` varchar(45) NOT NULL,
+   `imageurl` varchar(200) NOT NULL,
+   `bmid` varchar(45) NOT NULL,
+   PRIMARY KEY (`image_id`),
+   KEY `image and bookmark_idx` (`bmid`),
+   CONSTRAINT `image and bookmark` FOREIGN KEY (`bmid`) REFERENCES `bm` (`bookmarkid`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ 
+ CREATE TABLE `like_tb` (
+   `idLike` varchar(45) NOT NULL,
+   `userid` varchar(45) DEFAULT NULL,
+   `bk` varchar(45) DEFAULT NULL,
+   PRIMARY KEY (`idLike`),
+   UNIQUE KEY `idLike_UNIQUE` (`idLike`),
+   KEY `bm_idx` (`bk`),
+   KEY `like User_idx` (`userid`),
+   CONSTRAINT `bm` FOREIGN KEY (`bk`) REFERENCES `bm` (`bookmarkid`),
+   CONSTRAINT `like User` FOREIGN KEY (`userid`) REFERENCES `user_tb` (`idUser`) ON UPDATE CASCADE
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ 
+ Show create table image_tb
+ 
 -- describe bookmark
 -- INSERT INTO bookmark.user (idUser, name, password)
 -- value("21xxxx","shifa","zaqxsw");
@@ -141,6 +124,7 @@
 -- Insert into like_tb(idLike, userid, bk)
 -- values();
 
+-- mysqldump -u your_username -p your_database_name > dump.sql
 
 
 

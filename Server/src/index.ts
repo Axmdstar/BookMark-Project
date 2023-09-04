@@ -1,5 +1,4 @@
-import express, { NextFunction } from 'express';
-import { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from 'express';
 import * as dbfunc from './dbfunc/functions';
 import {authUser} from './middleware/auth_mdw';
 import * as jwt from 'jsonwebtoken';
