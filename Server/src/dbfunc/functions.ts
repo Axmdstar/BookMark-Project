@@ -23,33 +23,38 @@ const pool = createPool({
 
 export async function Checkuser(user: usrtype):Promise<any>{
     // check case sensitivily with COLLATE utf8mb4_bin
-    const stt : string = `SELECT * FROM user_tb where name COLLATE  utf8mb4_bin = "${user.usrname}" `
-    const [rows] = await pool.query<usrtype[]>(stt)
+    const stt : string = `SELECT * FROM user_tb where name COLLATE  utf8mb4_bin = "${user.usrname}" `;
+    try {
+        const [rows] = await pool.query<usrtype[]>(stt)
+        //_______________ Debug _____________
+        console.log("_____________________ GetUserByName Function _________________\n\n");
+        console.log('rows :>> ', rows);
 
-    //_______________ Debug _____________
-    console.log("_____________________ GetUserByName Function _________________\n\n");
-    console.log('rows :>> ', rows);
-        
-    const error = {} as Errortype
-    
-    if (rows.length !== 0) {
-        const {password} = rows[0]
+        const error = {} as Errortype
 
-        // check password 
-        if ( password === user.password) {
-            return rows[0]
+        if (rows.length !== 0) {
+            const { password } = rows[0]
+
+            // check password 
+            if (password === user.password) {
+                return rows[0]
+            } else {
+                // send password error 
+                error.message = "incorrect password"
+                error.status = 401
+            }
         } else {
-            // send password error 
-            error.message = "incorrect password"
+            // username not found 
+            error.message = "incorrect username"
             error.status = 401
         }
-    } else{
-        // username not found 
-        error.message = "incorrect username"
-        error.status = 401
+        pool.release();
+        return error
+    } catch (error) {
+        console.log("Error >>> \n", error);
+        return "";
     }
-    pool.release();
-    return error
+    
      
 }
 

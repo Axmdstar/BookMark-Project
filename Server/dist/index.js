@@ -63,6 +63,7 @@ app.use((0, cookie_parser_1.default)());
 //* Info MiddleWare
 app.use((req, res, next) => {
     console.log(">>>>>>>>>>> API Info <<<<<<<<<<<<<<<<\n");
+    console.log("all Good");
     console.log('req.method :>> ', req.method);
     console.log('req.path :>> ', req.path);
     next();
@@ -74,9 +75,16 @@ app.get("/LogOut", (req, res) => {
     res.send("why");
 });
 app.post("/login", async (req, res) => {
-    console.log("Got the data from formsData ", req);
+    console.log("Got the data from formsData ");
     // const {UserName, Password} = req.body
-    const check = await dbfunc.Checkuser(req.body);
+    let check;
+    try {
+        check = await dbfunc.Checkuser(req.body);
+    }
+    catch (error) {
+        console.log("Failed to Connect to the database");
+    }
+    // const check = await  dbfunc.Checkuser(req.body)
     // console.log('message' in check  );
     if ('message' in check) {
         console.log(check.message);

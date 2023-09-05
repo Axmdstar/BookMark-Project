@@ -10,7 +10,7 @@ const nanoid_1 = require("nanoid");
 dotenv_1.default.config();
 const pool = (0, mysql2_1.createPool)({
     host: process.env.BM_HOST,
-    user: process.env.BM_ROOT,
+    user: process.env.BM_USER,
     password: process.env.BM_PWD,
     database: process.env.BM_DB //"bookmark"
 }).promise();
@@ -18,29 +18,36 @@ const pool = (0, mysql2_1.createPool)({
 async function Checkuser(user) {
     // check case sensitivily with COLLATE utf8mb4_bin
     const stt = `SELECT * FROM user_tb where name COLLATE  utf8mb4_bin = "${user.usrname}" `;
-    const [rows] = await pool.query(stt);
-    //_______________ Debug _____________
-    console.log("_____________________ GetUserByName Function _________________\n\n");
-    console.log('rows :>> ', rows);
-    const error = {};
-    if (rows.length !== 0) {
-        const { password } = rows[0];
-        // check password 
-        if (password === user.password) {
-            return rows[0];
+    try {
+        const [rows] = await pool.query(stt);
+        //_______________ Debug _____________
+        console.log("_____________________ GetUserByName Function _________________\n\n");
+        console.log('rows :>> ', rows);
+        const error = {};
+        if (rows.length !== 0) {
+            const { password } = rows[0];
+            // check password 
+            if (password === user.password) {
+                return rows[0];
+            }
+            else {
+                // send password error 
+                error.message = "incorrect password";
+                error.status = 401;
+            }
         }
         else {
-            // send password error 
-            error.message = "incorrect password";
+            // username not found 
+            error.message = "incorrect username";
             error.status = 401;
         }
+        pool.release();
+        return error;
     }
-    else {
-        // username not found 
-        error.message = "incorrect username";
-        error.status = 401;
+    catch (error) {
+        console.log("Error >>> \n", error);
+        return "";
     }
-    return error;
 }
 exports.Checkuser = Checkuser;
 async function CheckId(idUser) {
