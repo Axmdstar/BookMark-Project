@@ -1,4 +1,4 @@
-import { createPool } from "mysql2";
+import { createPool, Pool } from "mysql2";
 import dotenv from 'dotenv';
 import { Errortype, GetBkItemResult, GetBkItemType, getbks, usrtype, NewBkitemType, likedtype } from "../Types/types";
 import { nanoid } from "nanoid";
@@ -13,7 +13,9 @@ const pool = createPool({
     user:process.env.BM_USER,//"root"
     password:process.env.BM_PWD,//"root"
     database:process.env.BM_DB   //"bookmark"
-}).promise()
+}).promise();
+
+
 
 
 
@@ -46,6 +48,7 @@ export async function Checkuser(user: usrtype):Promise<any>{
         error.message = "incorrect username"
         error.status = 401
     }
+    pool.release();
     return error
      
 }

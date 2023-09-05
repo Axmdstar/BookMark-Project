@@ -59,13 +59,13 @@ app.get("/LogOut", (req:Request, res:Response) => {
 
 app.post("/login", async (req:Request, res:Response) => {
     
-    console.log("Got the data from formsData ", req.body);
+    console.log("Got the data from formsData ");
     // const {UserName, Password} = req.body
     let check:any;
     try {
         check = await  dbfunc.Checkuser(req.body)
     } catch (error) {
-        console.log(error);
+        console.log("Failed to Connect to the database");
     }
     // const check = await  dbfunc.Checkuser(req.body)
     
