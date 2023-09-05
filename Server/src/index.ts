@@ -42,6 +42,7 @@ app.use(cookieParser())
 //* Info MiddleWare
 app.use( (req:Request, res:Response, next:NextFunction)=> {
     console.log(">>>>>>>>>>> API Info <<<<<<<<<<<<<<<<\n");
+    console.log("all Good");
     console.log('req.method :>> ', req.method);
     console.log('req.path :>> ', req.path);
     next();
@@ -153,8 +154,6 @@ app.delete("/delete/:type/:item",async (req:Request, res:Response) => {
 
     res.send("Item deleted");
 })
-
-
 
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`))

@@ -5,18 +5,18 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   "server":{
     "proxy": {
-      "/api": "http://localhost:2000",
-      "/login": "http://localhost:2000",
-      "/browserinfo": "http://localhost:2000",
-      "/getbks": "http://localhost:2000",
-      "/getItems": "http://localhost:2000",
-      "/signup": "http://localhost:2000",
-      "/addBk": "http://localhost:2000",
-      "/additem": "http://localhost:2000",
-      "/delete": "http://localhost:2000",
-      "/getExplore": "http://localhost:2000",
-      "/like": "http://localhost:2000",
-      "/LogOut": "http://localhost:2000"
+      "/api": "https://bookmark-devaxmed.onrender.com",
+      "/login": "https://bookmark-devaxmed.onrender.com",
+      "/browserinfo": "https://bookmark-devaxmed.onrender.com",
+      "/getbks": "https://bookmark-devaxmed.onrender.com",
+      "/getItems": "https://bookmark-devaxmed.onrender.com",
+      "/signup": "https://bookmark-devaxmed.onrender.com",
+      "/addBk": "https://bookmark-devaxmed.onrender.com",
+      "/additem": "https://bookmark-devaxmed.onrender.com",
+      "/delete": "https://bookmark-devaxmed.onrender.com",
+      "/getExplore": "https://bookmark-devaxmed.onrender.com",
+      "/like": "https://bookmark-devaxmed.onrender.com",
+      "/LogOut": "https://bookmark-devaxmed.onrender.com"
     }
   },
   plugins: [react()],
