@@ -74,7 +74,7 @@ app.get("/LogOut", (req, res) => {
     res.cookie("bookmark", req.cookies, { maxAge: 0, httpOnly: true });
     res.send("why");
 });
-app.post("/login", async (req, res) => {
+app.post("/login", async (req, res, next) => {
     console.log("Got the data from formsData ");
     // const {UserName, Password} = req.body
     let check;
@@ -83,6 +83,8 @@ app.post("/login", async (req, res) => {
     }
     catch (error) {
         console.log("Failed to Connect to the database");
+        // res.send("Failed to Connect to the database");
+        next(error);
     }
     // const check = await  dbfunc.Checkuser(req.body)
     // console.log('message' in check  );
