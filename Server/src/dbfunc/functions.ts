@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 
 
 
-dotenv.config()
+dotenv.config();
 const pool = createPool({
     host:process.env.BM_HOST,//"127.0.0.1"
     user:process.env.BM_USER,//"root"

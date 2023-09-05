@@ -61,7 +61,13 @@ app.post("/login", async (req:Request, res:Response) => {
     
     console.log("Got the data from formsData ", req.body);
     // const {UserName, Password} = req.body
-    const check = await  dbfunc.Checkuser(req.body)
+    let check:any;
+    try {
+        check = await  dbfunc.Checkuser(req.body)
+    } catch (error) {
+        console.log(error);
+    }
+    // const check = await  dbfunc.Checkuser(req.body)
     
     // console.log('message' in check  );
     if ( 'message' in check ) {
