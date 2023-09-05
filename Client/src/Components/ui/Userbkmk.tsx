@@ -9,12 +9,12 @@ import {FaPlus} from 'react-icons/fa6'
  
 const Userbkmk = () => {
     // States 
-    const {bkarr,userdata, SendToDb ,setBkarr, userBookmarks, GetBkid,bkselected, currentid, back} = useFetch();
+    const {bkarr, userdata, SendToDb, setBkarr, userBookmarks, GetBkid, bkselected, currentid, back} = useFetch();
     const [addform, setAddform] = useState(false);
     const [newtitle, setNewtitle] = useState("");
     
 
-    console.log("bkArr >> :", bkarr);
+    // console.log("bkArr >> :", bkarr);
 
     useEffect(()=>{
         userBookmarks();
@@ -28,14 +28,17 @@ const Userbkmk = () => {
         const bkid:string = nanoid();
         const usrid:string = userdata.idUser;
         
-
+        console.log(">>>>> ", bkarr);
+        const newbk = {bookmarkid:bkid, title, usrid, likes: 0};
         if (bkarr == undefined) {
-            setBkarr([{bookmarkid:bkid, title, usrid, likes: 0}]);
+
+            setBkarr([newbk]);
+            console.log("bkarr undefined");
         } else {
-            const newbk = {bookmarkid:bkid, title, usrid, likes: 0} ;
+            
             setBkarr([...bkarr, newbk]);
-            SendToDb(newbk);
         }
+        SendToDb(newbk);
         setAddform(!addform)
     };
 

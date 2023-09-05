@@ -72,6 +72,7 @@ export async function CheckId(idUser:string):Promise<boolean>{
 //! Gets 
 
 export async function GetUsrBk(UsrId:string) {
+    console.log("GetUsrBk() >>>>>>>")
     const stt:string = `select bookmarkid, title, usrid, count(lk.bk) as likes from bm
                         left join like_tb as lk on lk.bk = bookmarkid
                         where usrid = "${UsrId}"
@@ -120,6 +121,9 @@ export async function GetBkItems(Bkid:string): Promise<GetBkItemResult> {
     return arrResult;
 }
 
+
+
+
 //! insert 
 export async function NewUser(data:usrtype, id:string ): Promise<boolean> {
     const stt:string = `insert into user_tb(idUser, name, password, email)
@@ -139,8 +143,12 @@ export async function NewUser(data:usrtype, id:string ): Promise<boolean> {
 export async function NewBk(data:getbks) {
     const stt: string = `INSERT INTO bm(usrid, bookmarkid, title)
     values("${data.usrid}","${data.bookmarkid}","${data.title}");`;
+    try {
+        const result = pool.query(stt);
 
-    const result = pool.query(stt);
+    } catch (error) {
+        console.log(error);        
+    }
 }
 
 export async function liked(ids:likedtype) {
