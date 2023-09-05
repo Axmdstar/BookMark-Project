@@ -59,10 +59,10 @@ app.get("/LogOut", (req:Request, res:Response) => {
 
 app.post("/login", async (req:Request, res:Response) => {
     
-    console.log("Got the data from formsData ", req);
+    console.log("Got the data from formsData ", req.body);
     // const {UserName, Password} = req.body
     const check = await  dbfunc.Checkuser(req.body)
-
+    
     // console.log('message' in check  );
     if ( 'message' in check ) {
         console.log(check.message);
