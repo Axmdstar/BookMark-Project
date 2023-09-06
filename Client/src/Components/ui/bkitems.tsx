@@ -23,17 +23,21 @@ const Bookmarkitems = ({back, currentid}: {currentid?:string, back:()=>void}) =>
         if (Bkitems) {
             switch (type) {
                 case "Notes":
-                    const newtxt = [...Bkitems.txt,input];
+                    let newtxt: string[];
+                    Bkitems.txt ? newtxt = [...Bkitems.txt,input] : newtxt = [input];
                     setBkitems({...Bkitems,txt:newtxt});
                     break;
 
                 case "Links":
-                    const newlink = [...Bkitems.url,input];
+                    let newlink: string[];
+                    Bkitems.url ? newlink = [...Bkitems.url,input] : newlink = [input];
                     setBkitems({...Bkitems,url:newlink});
                     break;
                     
                 case "Images":
-                    const newimg = [...Bkitems.imgs,input];
+                    
+                    let newimg: string[];
+                    Bkitems.imgs ? newimg = [...Bkitems.imgs,input] : newimg = [input];
                     setBkitems({...Bkitems,imgs:newimg});
                     break;
             }

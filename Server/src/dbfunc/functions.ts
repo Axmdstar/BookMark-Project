@@ -5,17 +5,13 @@ import { nanoid } from "nanoid";
 
 
 
-
-
-dotenv.config();
+dotenv.config()
 const pool = createPool({
-    host:process.env.BM_HOST,//"127.0.0.1"
-    user:process.env.BM_USER,//"root"
-    password:process.env.BM_PWD,//"root"
-    database:process.env.BM_DB   //"bookmark"
+    host: process.env.BM_HOST,
+    user: process.env.BM_USER,
+    password: process.env.BM_PWD,
+    database: process.env.BM_DB
 }).promise();
-
-
 
 
 
@@ -25,6 +21,8 @@ export async function Checkuser(user: usrtype):Promise<any>{
     // check case sensitivily with COLLATE utf8mb4_bin
     const stt : string = `SELECT * FROM user_tb where name COLLATE  utf8mb4_bin = "${user.usrname}" `;
     try {
+        // console.log(pool.connection);
+        
         const [rows] = await pool.query<usrtype[]>(stt)
         //_______________ Debug _____________
         console.log("_____________________ GetUserByName Function _________________\n\n");
@@ -77,10 +75,15 @@ export async function GetUsrBk(UsrId:string) {
                         left join like_tb as lk on lk.bk = bookmarkid
                         where usrid = "${UsrId}"
                         group by bookmarkid, title`;
-    const [result] = await pool.query<getbks[]>(stt);
-    console.log("DB >>>: ", result);
+    try {
+        const [result] = await pool.query<getbks[]>(stt);
+        return result;
 
-    return result;
+    } catch (error) {
+        console.log('error :>> ', error);    
+    }
+    // console.log("DB >>>: ", result);
+
 }
 
 export async function GetExploreBks() {

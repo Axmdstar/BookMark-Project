@@ -33,7 +33,7 @@ const Userbkmk = () => {
         if (bkarr == undefined) {
 
             setBkarr([newbk]);
-            console.log("bkarr undefined");
+            
         } else {
             
             setBkarr([...bkarr, newbk]);
