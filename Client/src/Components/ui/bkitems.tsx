@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useFetch from "../Hooks/UseFetch";
 import {DropDowns} from './DropDown';
 import BackBtn from "./backbtn";
+import { LoadingPulse } from './LoadingsAnime';
+
 
 
 interface itemtodb {
@@ -11,7 +13,7 @@ interface itemtodb {
 }
 
 const Bookmarkitems = ({back, currentid}: {currentid?:string, back:()=>void}) => {
-    const {GetBkitems, setBkitems, Bkitems, NewItemtoDb, Deleteitemdb} = useFetch();
+    const {GetBkitems, setBkitems, Bkitems, NewItemtoDb, Deleteitemdb, Loading} = useFetch();
     const [inputValue, setInputValue] = useState("");
     
     useEffect(() => {
@@ -80,7 +82,7 @@ const Bookmarkitems = ({back, currentid}: {currentid?:string, back:()=>void}) =>
             <div className=" pb-11">
                 <div className="flex items-center rounded-md bg-violet-50 shadow-xl shadow-violet-300">
                     <BackBtn back={back}></BackBtn>
-                    <h1 className="text-3xl text-OvsP-p500 p-4 pl-4 pb-5 font-sans">{Bkitems?.title}</h1>
+                    <h1 className="text-3xl text-OvsP-p500 p-4 pl-4 pb-5 font-sans">{Loading ? <LoadingPulse/> :Bkitems?.title}</h1>
                 </div>
 
                 <div className="mt-9 bg-transparent shadow-2xl shadow-violet-400 h-auto " >

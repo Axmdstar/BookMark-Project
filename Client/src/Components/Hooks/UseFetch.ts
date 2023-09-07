@@ -27,6 +27,8 @@ const useFetch = () => {
     const [currentid, setCurrentid] = useState<string>("");
     const [bkselected, setBkselected] = useState(false);
     const [ErrMge, setErrMge] = useState("");
+    const [Loading, setLoading] = useState(false);
+
     //! Items In the bk state here 
 
     // Checks the user Cookies 
@@ -46,26 +48,28 @@ const useFetch = () => {
     const userBookmarks = () => {
 
         const endpoint: string = `/getbks/${userdata.idUser}`;
-        
-            axios.get(endpoint)
-                .then((res) => {
-                    //! res will be a array of bkmk.
-                    if (res.data !== "") {
+        setLoading(true);
 
-                        console.log("bk result, Number of bk", res.data.length, res);
-                        res.data.length === 0 ? setBkarr(undefined) : setBkarr(res.data) ;      
-                    }
-                })
-                .catch((err) => console.log(err))
+        axios.get(endpoint)
+            .then((res) => {
+                //! res will be a array of bkmk.
+                if (res.data !== "") {
+
+                    console.log("bk result, Number of bk", res.data.length, res);
+                    setLoading(false);
+                    res.data.length === 0 ? setBkarr(undefined) : setBkarr(res.data);      
+                }
+            })
+            .catch((err) => console.log(err))
         
     }
 
     const ExplorePage = () => {
         const endpoint: string = "/getExplore";
-
+        setLoading(true);
         axios.get(endpoint)
             .then( (res) => {
-                console.log("Explore data", res);
+                setLoading(false);
                 setBkarr(res.data);
             })
             .catch((err) => {
@@ -87,13 +91,14 @@ const useFetch = () => {
 
     const GetBkitems = (id?:string) => {
         const endpoint: string = `/getItems/${id}`;
-
-                axios.get(endpoint)
-                .then((res) => {
-                    console.log("Bk Items Array ",res.data);
-                    setBkitems(res.data);
-                })
-                .catch((err) => console.log(err))
+        setLoading(true)
+        axios.get(endpoint)
+        .then((res) => {
+            // console.log("Bk Items Array ",res.data);
+            setLoading(false)
+            setBkitems(res.data);
+        })
+        .catch((err) => console.log(err))
     }
          
     
@@ -162,7 +167,8 @@ const useFetch = () => {
         userBookmarks,
         BrowserInfo,
         NewItemtoDb,
-        back
+        back,
+        Loading
     }
     
 }

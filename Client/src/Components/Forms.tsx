@@ -7,11 +7,17 @@ import { SignUp } from "./SignUp";
 export const Forms  = () => {
     // const{ErrMge} = useFetch();
 
-    const [Signing, setSigning] = useState(false);    
+    const [Signing, setSigning] = useState(false);
+        
     return ( 
-        <div style={{ backgroundImage: "url(/image/bg.jpg)"}} className="bg-auto bg-center h-screen flex flex-col items-center justify-center ">
+        <div  className="bg-auto bg-center h-screen w-full flex flex-col items-center justify-center ">
             
-            <div className=" pt-16 mr-7 md:mr-6">
+            <div className=" h-1/5 ">
+                <h1 className="font-customtt text-6xl text-violet-700 drop-shadow-md font-extrabold">BookMarks.</h1>
+                <p className=" text-orange-500">Where you share your Notes.</p>
+            </div>
+
+            <div className=" ">
                {Signing ? <SignUp setSigning={setSigning}/> : <Login setSigning={setSigning}/>}
             </div>
                  

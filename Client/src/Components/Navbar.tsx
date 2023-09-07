@@ -34,20 +34,20 @@ const MainBk = () => {
           <h2 className="font-customtt font-extrabold text-2xl text-violet-50 p-5">BookMark.</h2>
           <h2 onClick={toExplore} className="text-white cursor-pointer ">Explore</h2>
           <button className=" ml-auto mr-2 relative" onClick={() => { setDdowntoggle(!ddowntoggle) }}>
-            <p className="px-3 text-white font-semibold hover:text-orange-400"><span>📒</span>{userdata.name} </p>
+          <p className="px-3 text-white font-semibold hover:text-orange-400"><span>📒</span>{userdata.name} </p>
 
             <div className={`flex-col w-40 right-0 z-50 absolute ${ddowntoggle ? "flex" : "hidden"}`}>
               <button className="pr-5 pl-1 py-2 mx-3 bg-violet-100 text-left text-violet-900 hover:bg-violet-400 hover:text-white" onClick={toHome}>My Bookmarks </button>
               <button className="pr-5 pl-1 py-2 mx-3 bg-violet-100 text-left text-violet-900 hover:bg-violet-400 hover:text-white" onClick={loggingOut}>Logout</button>
             </div>
+
           </button>
         </nav>
 
         <div className="w-[96%] mr-auto ml-auto ">
           {togglePage ? <Userbkmk /> : <Explore />}
         </div >
-
-
+        
       </div>
     );
 }

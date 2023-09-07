@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 // "http://localhost:2000"
 // "https://bookmark-devaxmed.onrender.com"
-const endpoint: string ="http://localhost:2000" ;
+const endpoint: string = "https://bookmark-devaxmed.onrender.com" ;
 export default defineConfig({
   "server":{
     "proxy": {
