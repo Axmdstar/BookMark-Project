@@ -1,6 +1,11 @@
 import { useContext, useState } from "react";
 import { Usrcontext } from "../context";
-import axios from 'axios';
+import axios, { all } from 'axios';
+
+// UseFetch Hook is kinda the most important hook where all
+// connection to the DB Happens
+
+//! It should be Breaken to make easy to read
 
 interface bkarrobj {
     bookmarkid : string,
@@ -147,6 +152,14 @@ const useFetch = () => {
             })
     }
 
+    const loggingOut = () => {
+        axios.get("/LogOut")
+          .then((res) => {
+            console.log(res);
+            setUserdata({name:"", idUser:"", auth:false});
+          })
+      }
+
 
     return {
         userdata,
@@ -168,9 +181,9 @@ const useFetch = () => {
         BrowserInfo,
         NewItemtoDb,
         back,
-        Loading
-    }
-    
+        Loading,
+        loggingOut
+    }   
 }
 
 export default useFetch

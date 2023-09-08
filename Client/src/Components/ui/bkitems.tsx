@@ -4,7 +4,10 @@ import {DropDowns} from './DropDown';
 import BackBtn from "./backbtn";
 import { LoadingPulse } from './LoadingsAnime';
 
-
+// Bookmarkitems views all the items in the bk in DropDowns
+// Component, props back, currentid.
+// back changes the bkselected true or false 
+// currentid bk id to search
 
 interface itemtodb {
     input?: string,
@@ -12,7 +15,7 @@ interface itemtodb {
     type?: string 
 }
 
-const Bookmarkitems = ({back, currentid}: {currentid?:string, back:()=>void}) => {
+const Bkitems = ({back, currentid, access}: {currentid?:string, back:()=>void, access:boolean}) => {
     const {GetBkitems, setBkitems, Bkitems, NewItemtoDb, Deleteitemdb, Loading} = useFetch();
     const [inputValue, setInputValue] = useState("");
     
@@ -74,7 +77,6 @@ const Bookmarkitems = ({back, currentid}: {currentid?:string, back:()=>void}) =>
                 break;
             }
         }
-
     }
     
     return ( 
@@ -86,13 +88,13 @@ const Bookmarkitems = ({back, currentid}: {currentid?:string, back:()=>void}) =>
                 </div>
 
                 <div className="mt-9 bg-transparent shadow-2xl shadow-violet-400 h-auto " >
-                    <DropDowns type="Notes" removeItem={removeItem} list={Bkitems?.txt} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
-                    <DropDowns type="Links" removeItem={removeItem} list={Bkitems?.url} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
-                    <DropDowns type="Images" removeItem={removeItem} list={Bkitems?.imgs} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
+                    <DropDowns access={access} type="Notes" removeItem={removeItem} list={Bkitems?.txt} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
+                    <DropDowns access={access} type="Links" removeItem={removeItem} list={Bkitems?.url} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
+                    <DropDowns access={access} type="Images" removeItem={removeItem} list={Bkitems?.imgs} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
                 </div>
             </div>
         </>
      );
 }
  
-export default Bookmarkitems;
+export default Bkitems;

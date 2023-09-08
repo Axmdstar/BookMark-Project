@@ -1,6 +1,9 @@
 import {AiFillHeart} from 'react-icons/ai';
 import useFetch from '../Hooks/UseFetch';
 
+// Bkcard is the card that show like, title, username
+// the props it takes are bkarr Bookmark array and Getbkid function
+// GetBkid() Gets the bookmark id 
 
 interface bkarrobj {
     bookmarkid : string,
@@ -19,8 +22,6 @@ interface BkmkProps {
 const Bkcard = ({ bkarr, GetBkid } :BkmkProps ) => {
     const {liked} = useFetch();
 
-    
-    
     return(
         <div className="md:grid grid-cols-4 gap-3 ">
 

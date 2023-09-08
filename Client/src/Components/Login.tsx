@@ -6,16 +6,15 @@ import { Logintype } from './ui/formtype';
 import { Usrcontext } from './context';
 import {LoadingIcon} from './ui/LoadingsAnime';
 
-// const inputstyle = "peer block min-h-[auto] w-full rounded border-0 bg-yellow-400 px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-purple-400 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+
 
 const Login = ({setSigning}:{setSigning: React.Dispatch<React.SetStateAction<boolean>>}) => {
   
-  // const [ cansubmit ] = useState(false);
   const {setUserdata} = useContext(Usrcontext);
   const [Loading, setLoading] = useState(false);
   const [serverErr, setserverErr] = useState();
   
-
+  //* Custom Hook From react-hook-forms 
   const {
     handleSubmit,
     register,
@@ -25,7 +24,6 @@ const Login = ({setSigning}:{setSigning: React.Dispatch<React.SetStateAction<boo
   
   const SubmitHandle: SubmitHandler<Logintype> = (data) => {
 
-      console.log("data >>>> ",data);
       setLoading(true);
       axios.post("/login", data)
       .then((res) => {
@@ -35,10 +33,8 @@ const Login = ({setSigning}:{setSigning: React.Dispatch<React.SetStateAction<boo
         setUserdata({idUser, name, auth:true});
       })
       .catch((err) => {
-        console.log(err);
         setserverErr(err.response.data);
       })
-
   }
   
   const buttonstyle = "mb-2 block w-full rounded bg-violet-500 px-6 pb-2 pt-2.5 text-xl font-medium uppercase hover:bg-OvsP-p400 leading-normal text-white shadow-violet-800 shadow-lg transition duration-150 ease-in-out  hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-OvsP-p200 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-OvsP-p500 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] "

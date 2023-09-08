@@ -13,7 +13,8 @@ interface DropDownProps {
     list?: string[],
     ItemtoDb: ({input, id, type}:itemtodb)=>void,
     setInputValue: React.Dispatch<React.SetStateAction<string>>,
-    removeItem : (type:string, id?:string) => void    
+    removeItem : (type:string, id?:string) => void,
+    access: boolean    
 }
 
 // input component that takes id
@@ -23,7 +24,7 @@ const Itemforminput = ({setInputValue}:{setInputValue:React.Dispatch<React.SetSt
     );
 }
 
-export const DropDowns = ({type , list, ItemtoDb, setInputValue, removeItem}:DropDownProps) =>
+export const DropDowns = ({type , list, ItemtoDb, setInputValue, removeItem, access}:DropDownProps) =>
  {
     const [itemform, setItemform] = useState(false);
     const [dropdown, setDropdown] = useState(false);
@@ -39,23 +40,25 @@ export const DropDowns = ({type , list, ItemtoDb, setInputValue, removeItem}:Dro
                     
                     switch (type) {
                         case "Notes":
-                            return(<TxtComp type={type} item={item} id={id} removeItem={removeItem}/>)        
+                            return(<TxtComp type={type} item={item} id={id} removeItem={removeItem} access={access}/>)        
                             
                         case "Links":
-                            return(<LinkComp type={type} item={item} id={id} removeItem={removeItem}/>)
+                            return(<LinkComp type={type} item={item} id={id} removeItem={removeItem} access={access}/>)
                             
                         case "Images":
-                            return(<ImgComp type={type} item={item} id={id} removeItem={removeItem}/>)
+                            return(<ImgComp type={type} item={item} id={id} removeItem={removeItem} access={access}/>)
                     }
                 })
             }
             
             <div className="self-center w-full py-9 pb-6 flex justify-center ">
-                { itemform ? <div className="flex  w-9/12">
-                    <Itemforminput setInputValue={setInputValue}/>
-                    <button className={buttonstyle} onClick={() => {setItemform(!itemform); ItemtoDb({type:type})}}>add</button>
-                    </div> 
-                      : <button onClick={() => setItemform(!itemform)} className={buttonstyle}><FaPlus className=" mr-auto ml-auto text-white"/></button>   }
+                    {itemform ?
+                        <div className="flex  w-9/12">
+                            <Itemforminput setInputValue={setInputValue} />
+                            <button className={buttonstyle} onClick={() => { setItemform(!itemform); ItemtoDb({ type: type }) }}>add</button>
+                        </div> :
+                        <>{access && <button onClick={() => setItemform(!itemform)} className={buttonstyle}><FaPlus className=" mr-auto ml-auto text-white" /></button>}</>
+                    }
                     </div>
             </div>
         

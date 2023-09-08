@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import useFetch from "../Hooks/UseFetch";
 import Bkcard from "./bkcard";
-import Bookmarkitems from "./bkitems";
+import Bkitems from "./bkitems";
 import { LoadingOrbit } from './LoadingsAnime';
 
-
+// Explore component is where all users bks are viewed 
+// and can be selected.
 
 const Explore = () => {
     const {bkarr,bkselected , currentid, ExplorePage, GetBkid, back, Loading} = useFetch();
@@ -14,11 +15,13 @@ const Explore = () => {
     }, []);
     
     return ( 
-        <div className="h-screen">
+        <section className="h-screen">
             <h2 className="p-5 text-3xl font-semibold font-customtt text-orange-400">Explore</h2>
-            {bkselected ? <Bookmarkitems currentid={currentid} back={back}/> : 
-            <> { Loading ? <LoadingOrbit/> : <Bkcard bkarr={bkarr} GetBkid={GetBkid}/> } </> }            
-        </div>
+            {bkselected ?
+                <Bkitems currentid={currentid} back={back} access={false}/> :
+                <> {Loading ? <LoadingOrbit /> : <Bkcard bkarr={bkarr} GetBkid={GetBkid} />} </>
+            }            
+        </section>
      );
 }
  
