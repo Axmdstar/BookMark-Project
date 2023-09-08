@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Usrcontext } from "../context";
-import axios, { all } from 'axios';
+import axios from 'axios';
 
 // UseFetch Hook is kinda the most important hook where all
 // connection to the DB Happens

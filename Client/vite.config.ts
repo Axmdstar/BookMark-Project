@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react'
 // "https://bookmark-devaxmed.onrender.com"
 const endpoint: string = "https://bookmark-devaxmed.onrender.com" ;
 export default defineConfig({
+  base:"/BookMark-Project/",
   "server":{
     "proxy": {
       "/api": endpoint,
