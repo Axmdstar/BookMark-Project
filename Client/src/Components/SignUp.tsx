@@ -30,7 +30,7 @@ export const SignUp = ({ setSigning }: { setSigning: React.Dispatch<React.SetSta
     const SendData: SubmitHandler<SignUptype> = (data) => {
         console.log(data);
         setLoading(true);
-        axios.post("/signup", data)
+        axios.post("https://bookmark-devaxmed.onrender.com"+"/signup", data)
             .then((res) => {
                 console.log("Data from server >> ", res);
                 setLoading(false);
