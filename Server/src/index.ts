@@ -24,16 +24,17 @@ const app = express()
 //* middleWares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:"*"}));
+// app.use(cors({origin:"*"}));
 
 app.use( (req:Request, res:Response, next:NextFunction)=> {
     console.log(">>>>>>>>>>> API Info <<<<<<<<<<<<<<<<\n");
     console.log("all Good");
     console.log('req.method :>> ', req.method);
     console.log('req.path :>> ', req.path);
+    console.log("header :>>", req.header);
     next();
 })
 
-app.use(routes);
+app.use(routes, cors({origin:"*"}));
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`))
