@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 
 const CreateToken = (payload: object) => {
     const secret = "devaxmed"
-    const expires = 60 * 60
+    const expires = 60 * 609
     const token = jwt.sign({payload}, secret, {expiresIn:expires})
     console.log("Token >>>> ", token);
     console.log("Payload >>>> ", payload);
@@ -63,6 +63,7 @@ export const SignUp = async (req:Request, res:Response) => {
 
 export const BrowserInfo = (req:Request, res:Response)=> {
     // res.setHeader('Access-Control-Allow-Origin', 'https://bookmarks-devaxmed.onrender.com');
+    console.log(req.userauth);
     res.send(req.userauth);
 }
 

@@ -30,10 +30,10 @@ export  const authUser = async (req:Request , res:Response,  next:NextFunction) 
     // get cookie 
     const cookie = req.cookies.bookmark
     const secret = "devaxmed"
-
+    console.log(cookie);
     // cookie found in browser 
     if (cookie) {
-
+        console.log("in the if >>>>>");
         try {
             const data = jwt.verify(cookie,secret)
             const decoded = data as decodedtoken
@@ -48,8 +48,11 @@ export  const authUser = async (req:Request , res:Response,  next:NextFunction) 
             }
 
         } catch (error) {
+            console.log(error);
             req.userauth = {auth:false}
-        }        
+        } 
+        
+        
     }
     else{
         req.userauth = {auth:false}

@@ -60,6 +60,7 @@ export async function CheckId(idUser:string):Promise<boolean>{
     const stt : string = `SELECT * FROM user_tb where idUser = "${idUser}" `;
     const [result] = await pool.query<[]>(stt);
 
+    console.log('result :>> ', result);
     if (result.length == 0) {
         return false
     }
