@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import routes from "./Routes/routes";
-//* cookieParser is needed so that express can read cookies
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 
@@ -22,10 +22,10 @@ const PORT = 2000
 const app = express()
 
 //* middleWares
-app.use(express.json())
-app.use(cookieParser())
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors);
 
-//* Info MiddleWare
 app.use( (req:Request, res:Response, next:NextFunction)=> {
     console.log(">>>>>>>>>>> API Info <<<<<<<<<<<<<<<<\n");
     console.log("all Good");
