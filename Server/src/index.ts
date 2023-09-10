@@ -28,13 +28,13 @@ app.use(cookieParser());
 
 app.use( (req:Request, res:Response, next:NextFunction)=> {
     console.log(">>>>>>>>>>> API Info <<<<<<<<<<<<<<<<\n");
-    console.log("all Good");
+    console.log("header :>>", req.header);
     console.log('req.method :>> ', req.method);
     console.log('req.path :>> ', req.path);
-    console.log("header :>>", req.header);
+    
     next();
 })
 
-app.use(routes, cors({origin:"*"}));
+app.use(routes, cors({origin:"https://bookmarks-devaxmed.onrender.com"}));    
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`))
