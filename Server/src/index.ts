@@ -24,8 +24,8 @@ const app = express()
 //* middleWares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:"http://bookmarks-devaxmed.onrender.com", credentials:true}));
-
+app.use(cors({origin:"https://bookmarks-devaxmed.onrender.com", credentials:true}));
+                    //   https://bookmarks-devaxmed.onrender.com
 app.use( (req:Request, res:Response, next:NextFunction)=> {
     console.log(">>>>>>>>>>> # API Info # <<<<<<<<<<<<<<<<\n");
     console.log("header :>>", req.header);
