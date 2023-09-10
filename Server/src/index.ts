@@ -36,5 +36,4 @@ app.use( (req:Request, res:Response, next:NextFunction)=> {
 
 app.use(routes);
 
-
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`))

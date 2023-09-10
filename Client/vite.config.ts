@@ -8,6 +8,7 @@ const endpoint: string = "https://bookmark-devaxmed.onrender.com" ;
 export default defineConfig({
   base:"/",
   "server":{
+    origin:"https://bookmark-devaxmed.onrender.com",
     "proxy": {
       "/api": endpoint,
       "/login": endpoint,
