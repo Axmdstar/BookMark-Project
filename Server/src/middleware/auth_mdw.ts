@@ -30,7 +30,7 @@ export  const authUser = async (req:Request , res:Response,  next:NextFunction) 
     // get cookie 
     const cookie = req.cookies.bookmark
     const secret = "devaxmed"
-    console.log(cookie);
+    console.log("authUser >>>:",cookie);
     // cookie found in browser 
     if (cookie) {
         console.log("in the if >>>>>");
@@ -55,6 +55,7 @@ export  const authUser = async (req:Request , res:Response,  next:NextFunction) 
         
     }
     else{
+        console.log("No Cookie Found $$$$$$$");
         req.userauth = {auth:false}
     } 
 

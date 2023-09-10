@@ -14,6 +14,15 @@ const CreateToken = (payload: object) => {
     return token 
 }
 
+
+
+
+
+
+
+
+
+
 export const LogOut =  (req:Request, res:Response) => {
     console.log(req.cookies.bookmark);
     res.cookie("bookmark",req.cookies,{maxAge:0, httpOnly:true})
@@ -21,12 +30,16 @@ export const LogOut =  (req:Request, res:Response) => {
 }
 
 
+
+
 export const LogIn = async (req:Request, res:Response, next:NextFunction) => {
-    console.log("Got the data from formsData ");
+    console.log("Got the data from formsData ", req.body);
     // const {UserName, Password} = req.body
     let check:any;
+
     try {
         check = await  dbfunc.Checkuser(req.body)
+        console.log("In the Try Check >>",check);
     } catch (error) {
         console.log("Failed to Connect to the database");
         next(error);
