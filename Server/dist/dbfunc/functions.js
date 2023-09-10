@@ -12,13 +12,14 @@ const pool = (0, mysql2_1.createPool)({
     host: process.env.BM_HOST,
     user: process.env.BM_USER,
     password: process.env.BM_PWD,
-    database: process.env.BM_DB //"bookmark"
+    database: process.env.BM_DB
 }).promise();
 //! Checks 
 async function Checkuser(user) {
     // check case sensitivily with COLLATE utf8mb4_bin
     const stt = `SELECT * FROM user_tb where name COLLATE  utf8mb4_bin = "${user.usrname}" `;
     try {
+        // console.log(pool.connection);
         const [rows] = await pool.query(stt);
         //_______________ Debug _____________
         console.log("_____________________ GetUserByName Function _________________\n\n");
@@ -61,13 +62,19 @@ async function CheckId(idUser) {
 exports.CheckId = CheckId;
 //! Gets 
 async function GetUsrBk(UsrId) {
+    console.log("GetUsrBk() >>>>>>>");
     const stt = `select bookmarkid, title, usrid, count(lk.bk) as likes from bm
                         left join like_tb as lk on lk.bk = bookmarkid
                         where usrid = "${UsrId}"
                         group by bookmarkid, title`;
-    const [result] = await pool.query(stt);
-    console.log("DB >>>: ", result);
-    return result;
+    try {
+        const [result] = await pool.query(stt);
+        return result;
+    }
+    catch (error) {
+        console.log('error :>> ', error);
+    }
+    // console.log("DB >>>: ", result);
 }
 exports.GetUsrBk = GetUsrBk;
 async function GetExploreBks() {
@@ -120,7 +127,12 @@ exports.NewUser = NewUser;
 async function NewBk(data) {
     const stt = `INSERT INTO bm(usrid, bookmarkid, title)
     values("${data.usrid}","${data.bookmarkid}","${data.title}");`;
-    const result = pool.query(stt);
+    try {
+        const result = pool.query(stt);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 exports.NewBk = NewBk;
 async function liked(ids) {

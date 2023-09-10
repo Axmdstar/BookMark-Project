@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const controllers_1 = require("../Controllers/controllers");
+const auth_mdw_1 = require("../middleware/auth_mdw");
+const routes = (0, express_1.Router)();
+routes.get("/LogOut", controllers_1.LogOut);
+routes.get("/browserinfo", auth_mdw_1.authUser, controllers_1.BrowserInfo);
+routes.get("/getExplore", auth_mdw_1.authUser, controllers_1.GetExploreBks);
+routes.get("/getbks/:id", controllers_1.GetBks);
+routes.get("/getItems/:id", controllers_1.GetItems);
+routes.post("/login", controllers_1.LogIn);
+routes.post("/signup", controllers_1.SignUp);
+routes.post("/addBk", controllers_1.AddBk);
+routes.post("/additem", controllers_1.AddItem2Bk);
+routes.post("/like", controllers_1.Like);
+routes.delete("/delete/:type/:item", controllers_1.Delete);
+exports.default = routes;
