@@ -50,7 +50,6 @@ export const LogIn = async (req:Request, res:Response, next:NextFunction) => {
         res.status(check.status).send(check.message)    
     } else {
         const {idUser,name} = check
-        console.log(idUser)
 
         const cookies = CreateToken({idUser, name})
         res.cookie("bookmark", cookies,{httpOnly:true})
