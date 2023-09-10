@@ -62,7 +62,7 @@ export const SignUp = async (req:Request, res:Response) => {
 
 
 export const BrowserInfo = (req:Request, res:Response)=> {
-    res.setHeader('Access-Control-Allow-Origin', 'https://bookmarks-devaxmed.onrender.com');
+    // res.setHeader('Access-Control-Allow-Origin', 'https://bookmarks-devaxmed.onrender.com');
     res.send(req.userauth);
 }
 
