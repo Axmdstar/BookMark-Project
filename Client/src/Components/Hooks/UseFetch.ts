@@ -24,6 +24,7 @@ interface BkitemType {
     imgs: string[]
 }
 
+const url:string = "https://bookmark-devaxmed.onrender.com";
 const useFetch = () => {
 
     const {userdata, setUserdata} = useContext(Usrcontext);
@@ -39,7 +40,7 @@ const useFetch = () => {
     // Checks the user Cookies 
     const BrowserInfo = () => {
             
-            axios.get("/browserinfo")
+            axios.get(url+ "/browserinfo")
               .then((res) => {
                 console.log('result for browser Info :>> ', res);
                 if (res.data.auth) {
@@ -55,7 +56,7 @@ const useFetch = () => {
         const endpoint: string = `/getbks/${userdata.idUser}`;
         setLoading(true);
 
-        axios.get(endpoint)
+        axios.get(url+endpoint)
             .then((res) => {
                 //! res will be a array of bkmk.
                 if (res.data !== "") {
@@ -72,7 +73,7 @@ const useFetch = () => {
     const ExplorePage = () => {
         const endpoint: string = "/getExplore";
         setLoading(true);
-        axios.get(endpoint)
+        axios.get(url+endpoint)
             .then( (res) => {
                 setLoading(false);
                 setBkarr(res.data);
@@ -97,7 +98,7 @@ const useFetch = () => {
     const GetBkitems = (id?:string) => {
         const endpoint: string = `/getItems/${id}`;
         setLoading(true)
-        axios.get(endpoint)
+        axios.get(url+endpoint)
         .then((res) => {
             // console.log("Bk Items Array ",res.data);
             setLoading(false)
@@ -109,7 +110,7 @@ const useFetch = () => {
     
     const SendToDb = (data:bkarrobj) => {
         console.log("sendtoDB >>: ", data);
-        axios.post("/addBk",data)
+        axios.post(url+"/addBk",data)
             .then((res) =>{
                 console.log("New Bk res >>>: ", res);
             })
@@ -122,7 +123,7 @@ const useFetch = () => {
             item,
             type
         }
-        axios.post(endpoint,payload)
+        axios.post(url+endpoint,payload)
             .then((res) => {
                 console.log(res);
             })
@@ -134,7 +135,7 @@ const useFetch = () => {
             item = encodeURIComponent(item);
         }
         const endpoint:string = `/delete/${type}/${item}`;
-        axios.delete(endpoint)
+        axios.delete(url+endpoint)
             .then((res) => {
                 console.log(res);
             })
@@ -145,7 +146,7 @@ const useFetch = () => {
 
         const endpoint:string = "/like";
         const payload = {bkid, usrid}
-        axios.post(endpoint, payload)
+        axios.post(url+endpoint, payload)
             .then((res) => {
                 console.log("success");
                 console.log(res);
@@ -153,7 +154,7 @@ const useFetch = () => {
     }
 
     const loggingOut = () => {
-        axios.get("/LogOut")
+        axios.get(url+"/LogOut")
           .then((res) => {
             console.log(res);
             setUserdata({name:"", idUser:"", auth:false});
