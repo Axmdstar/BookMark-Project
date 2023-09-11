@@ -46,7 +46,7 @@ export const DropDowns = ({type , list, ItemtoDb, setInputValue, removeItem, acc
                             return(<LinkComp type={type} item={item} id={id} removeItem={removeItem} access={access}/>)
                             
                         case "Images":
-                            return(<ImgComp type={type} item={item} id={id} removeItem={removeItem} access={access}/>)
+                            return(<><ImgComp type={type} item={item} id={id} removeItem={removeItem} access={access}/><p>You can only Copy Image Links and add Them to you bookmark</p></>)
                     }
                 })
             }

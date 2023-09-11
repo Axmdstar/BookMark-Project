@@ -27,10 +27,10 @@ export const Forms  = () => {
             <div className=" w-[300px] block">
                 <h1 className="font-customtt text-6xl text-violet-700 drop-shadow-md font-extrabold">BookMarks.</h1>
                 <p className=" text-orange-500">Where you share your Notes.</p>
-                <div className="w-auto  py-5 h-60">
+                <div className="w-auto  py-5 h-64">
                     <button className="ml-auto block w-10 bg-violet-500 rounded-md text-white py-1 ease-in-out hover:bg-violet-800 hover:shadow-none shadow-md shadow-violet-700" onClick={()=> changelang()}>{langtitle}</button>
-                    <p className={` text-violet-700 drop-shadow-sm font-light ${!lang && "hidden"}`}>Bookmarks is like a special tool on the computer that helps you remember your favorite websites. You can save not just the website, but also your thoughts, pictures, and even see what other people like.</p>
-                    <p className={` text-violet-700 drop-shadow-sm font-light ${lang && "hidden"}`}>Bookmarks waa sida qalab gaar ah oo kumbiyuutarka ku jira oo kaa caawinaya inaad xasuusato mareegaha aad jeceshahay. Ma badbaadin kartid bogga internetka oo kaliya, laakiin sidoo kale fikradahaaga, sawiradaada, iyo xitaa waxaad arki kartaa waxa ay dadka kale jecel yihiin.</p>
+                    <p className={`py-2 text-violet-700 drop-shadow-sm font-light ${!lang && "hidden"}`}>Bookmarks is like a special tool on the computer that helps you remember your favorite websites. You can save not just the website, but also your thoughts, pictures, and even see what other people like.</p>
+                    <p className={`py-2 text-violet-700 drop-shadow-sm font-light ${lang && "hidden"}`}>Bookmarks waa sida qalab gaar ah oo kumbiyuutarka ku jira oo kaa caawinaya inaad xasuusato mareegaha aad jeceshahay. Ma badbaadin kartid bogga internetka oo kaliya, laakiin sidoo kale fikradahaaga, sawiradaada, iyo xitaa waxaad arki kartaa waxa ay dadka kale jecel yihiin.</p>
                 </div>
             </div>
 
