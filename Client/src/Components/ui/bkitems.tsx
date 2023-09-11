@@ -91,6 +91,7 @@ const Bkitems = ({back, currentid, access}: {currentid?:string, back:()=>void, a
                     <DropDowns access={access} type="Notes" removeItem={removeItem} list={Bkitems?.txt} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
                     <DropDowns access={access} type="Links" removeItem={removeItem} list={Bkitems?.url} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
                     <DropDowns access={access} type="Images" removeItem={removeItem} list={Bkitems?.imgs} ItemtoDb={ItemtoDb} setInputValue={setInputValue} />
+                    <p>You can Only Add Image Address links example:https://images-eds-ssl.xboxlive.com/image?url&h=1080&w=1920&format=jpg</p>
                 </div>
             </div>
         </>
