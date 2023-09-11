@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-      <div className=' bg-gradient-to-b from-slate-50 to-violet-200 overflow-auto h-screen relative '>
+      <div className=' bg-gradient-to-b from-slate-50 to-violet-200 overflow-auto h-screen  '>
         {/* switch btw Mainbk and user Forms */}
         {userdata.auth ? <MainBk /> : <Forms />}
 
