@@ -40,7 +40,7 @@ const useFetch = () => {
     // Checks the user Cookies 
     const BrowserInfo = () => {
             
-            axios.get(url+ "/browserinfo")
+            axios.get(url+ "/browserinfo", { withCredentials: true })
               .then((res) => {
                 console.log('result for browser Info :>> ', res);
                 if (res.data.auth) {
