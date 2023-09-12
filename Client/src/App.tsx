@@ -3,7 +3,7 @@ import { Forms } from './Components/Forms'
 import useFetch from './Components/Hooks/UseFetch';
 import { useEffect } from 'react';
 import MainBk from './Components/MainBk';
-import {FaInstagram, FaFacebook, FaYoutube} from 'react-icons/fa6'
+import {FaInstagram, FaFacebook, FaYoutube, FaGithub} from 'react-icons/fa6'
 
 //* to-dos
 //* home page
@@ -51,6 +51,7 @@ function App() {
             <a href="https://instagram.com/devaxmed?igshid=Mzc0YWU1OWY="><FaInstagram /></a>
             <a href="https://www.facebook.com/profile.php?id=100058699734587"><FaFacebook/></a>
             <a href="https://youtube.com/@devaxd4889?si=jUcygFfzbD1ZRuH_"><FaYoutube/></a>
+            <a href="https://github.com/Axmdstar/BookMark-Project"><FaGithub/></a>
           </div>
           <p className='text-gray-700'>By Ahmed Fareh </p>
         </footer>
