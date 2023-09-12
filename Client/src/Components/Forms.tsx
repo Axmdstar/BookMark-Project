@@ -22,9 +22,9 @@ export const Forms  = () => {
     }
         
     return ( 
-        <section  className="  h-screen w-full flex flex-col items-center justify-center  ">
+        <section  className="   w-full flex flex-col items-center justify-center  ">
             {/* App title  */}
-            <div className=" w-[300px] block">
+            <div className=" w-[300px] block mt-8">
                 <h1 className="font-customtt text-6xl text-violet-700 drop-shadow-md font-extrabold">BookMarks.</h1>
                 <p className=" text-orange-500">Where you share your Notes.</p>
                 <div className="w-auto  py-5 h-64">

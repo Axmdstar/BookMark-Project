@@ -52,7 +52,7 @@ function App() {
             <a href="https://www.facebook.com/profile.php?id=100058699734587"><FaFacebook/></a>
             <a href="https://youtube.com/@devaxd4889?si=jUcygFfzbD1ZRuH_"><FaYoutube/></a>
           </div>
-          <p className='text-orange-800'>By Ahmed Fareh </p>
+          <p className='text-gray-700'>By Ahmed Fareh </p>
         </footer>
 
       </div>

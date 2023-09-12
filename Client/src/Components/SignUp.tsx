@@ -17,9 +17,11 @@ const Redirect = (({setSigning}:{setSigning: React.Dispatch<React.SetStateAction
 })
 
 export const SignUp = ({ setSigning }: { setSigning: React.Dispatch<React.SetStateAction<boolean>> }) => {
-    const [password, setPassword] = useState("");
+    // const [password, setPassword] = useState("");
+    const [confirmpsd, setConfirmpsd] = useState("");
     const [signupRes, setSignupRes] = useState();
     const [Loading, setLoading] = useState(false);
+    const [submitdisabled, setSubmitdisabled] = useState(true);
 
     // Custom Hook From react-hook-forms 
     const {
@@ -43,11 +45,11 @@ export const SignUp = ({ setSigning }: { setSigning: React.Dispatch<React.SetSta
     }
 
 
-    alert("Use a Fake email\n\nFake email istacmal");
-    const buttonstyle = "mb-2 block w-full rounded bg-violet-500 px-6 pb-2 pt-2.5 text-xl font-medium uppercase hover:bg-OvsP-p400 leading-normal text-white shadow-violet-800 shadow-lg transition duration-150 ease-in-out  hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-OvsP-p200 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-OvsP-p500 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] "
+    // alert("Use a Fake email\n\nFake email istacmal");
+    const buttonstyle =`${submitdisabled && "disabled:bg-violet-950"}  mb-2 block w-full rounded bg-violet-500 px-6 pb-2 pt-2.5 text-xl font-medium uppercase hover:bg-OvsP-p400 leading-normal text-white shadow-violet-800 shadow-lg transition duration-150 ease-in-out  hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-OvsP-p200 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-OvsP-p500 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] `
 
     return (
-    <form onSubmit={handleSubmit(SendData)} className="flex flex-col gap-5  ">
+    <form onSubmit={handleSubmit(SendData)} className="flex flex-col pb-7">
 
         {/* Switch btw signupRes, Redirect */}
         {signupRes ? <Redirect setSigning={setSigning} /> :
@@ -64,16 +66,21 @@ export const SignUp = ({ setSigning }: { setSigning: React.Dispatch<React.SetSta
                 />
 
                 <Label>Password:</Label>
-                <input onChange={(e) => { setPassword(e.target.value) }}
+                <input type='password' {...register("password",
+                    {
+                        onChange: (e) => setConfirmpsd(e.target.value),
+                        // onChange={(e) => { setConfirmpsd(e.target.value)}}
+                        minLength: { value: 6, message: "Minlength 6" },
+                        required:true
+                    })}
                     className={" block min-h-[auto] w-full focus:ring-2 ring-purple-600 rounded border-0 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-purple-300 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-black placeholder:text-purple-400 peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 "}
                 />
-
+                {/* onChange: (e) => e.target.value == confirmpsd ? console.log("Match") : null, */}
+                {/* onChange={(e) => { setPassword(e.target.value)}} */}
+                {/* {...register("password", { required: true, minLength: { value: 6, message: "minlength 6" } })} */}
                 <Label>Confirm Password:</Label>
-                <input {...register("password",
-                    {
-                        onChange: (e) => e.target.value == password ? console.log("Match") : null,
-                        minLength: { value: 6, message: "minlength 6" }
-                    })}
+                <input type='password'
+                    onChange={(e) => e.target.value == confirmpsd ? setSubmitdisabled(false) : setSubmitdisabled(true)}  
                     className={" block min-h-[auto] w-full focus:ring-2 ring-purple-600 rounded border-0 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-purple-300 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-black placeholder:text-purple-400 peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 "}
                 />
 
@@ -81,6 +88,7 @@ export const SignUp = ({ setSigning }: { setSigning: React.Dispatch<React.SetSta
                 
                 <button type="submit"
                 className={buttonstyle}
+                disabled={submitdisabled}
                 > 
                 {Loading ? <LoadingIcon /> : "Submit"}
                 </button>
