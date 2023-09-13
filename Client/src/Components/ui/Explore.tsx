@@ -15,7 +15,7 @@ const Explore = () => {
     }, []);
     
     return ( 
-        <section className="h-screen">
+        <section className="">
             <h2 className="p-5 text-3xl font-semibold font-customtt text-orange-400">Explore</h2>
             {bkselected ?
                 <Bkitems currentid={currentid} back={back} access={false}/> :
