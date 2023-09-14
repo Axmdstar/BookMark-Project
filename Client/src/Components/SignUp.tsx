@@ -52,6 +52,7 @@ export const SignUp = ({ setSigning }: { setSigning: React.Dispatch<React.SetSta
     <form onSubmit={handleSubmit(SendData)} className="flex flex-col pb-7">
 
         {/* Switch btw signupRes, Redirect */}
+        <p className='text-orange-600'>This is Just preview Project dont use your real email or password</p>
         {signupRes ? <Redirect setSigning={setSigning} /> :
             <div>
 
