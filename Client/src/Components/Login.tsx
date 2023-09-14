@@ -43,6 +43,9 @@ const Login = ({setSigning}:{setSigning: React.Dispatch<React.SetStateAction<boo
     axios.post("https://bookmark-devaxmed.onrender.com"+"/Guest",  { withCredentials: true })
     .then((res) => {
       console.log(res);
+      const {id, name} = res.data;
+      setLoading(false);
+      setUserdata({idUser:id, name, auth:true})
     })
     .catch((err) => {
       console.log(err);
