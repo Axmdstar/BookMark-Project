@@ -139,7 +139,7 @@ export async function NewUser(data:usrtype, id:string ): Promise<boolean> {
         return true;
 
     } catch (error) {
-        console.log("Error");
+        console.log(error);
         return false;
     }
 }

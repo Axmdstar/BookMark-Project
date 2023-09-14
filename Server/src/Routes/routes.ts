@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { AddBk, AddItem2Bk, BrowserInfo, Delete, GetBks, GetExploreBks, GetItems, Like, LogIn, LogOut, SignUp } from '../Controllers/controllers';
+import { Guest, AddBk, AddItem2Bk, BrowserInfo, Delete, GetBks, GetExploreBks, GetItems, Like, LogIn, LogOut, SignUp } from '../Controllers/controllers';
 import { authUser } from '../middleware/auth_mdw';
 
 
@@ -14,6 +14,7 @@ routes.get("/getItems/:id", GetItems)
 
 routes.post("/login", LogIn)
 routes.post("/signup", SignUp)
+routes.post("/Guest", Guest)
 
 routes.post("/addBk", AddBk)
 routes.post("/additem", AddItem2Bk)

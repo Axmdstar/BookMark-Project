@@ -19,18 +19,12 @@ const CreateToken = (payload: object) => {
 
 
 
-
-
-
-
+//! User Function 
 export const LogOut =  (req:Request, res:Response) => {
     console.log(req.cookies.bookmark);
     res.cookie("bookmark",req.cookies,{maxAge:0, httpOnly:true})
     res.send("why")
 }
-
-
-
 
 export const LogIn = async (req:Request, res:Response, next:NextFunction) => {
     console.log("Got the data from formsData ", req.body);
@@ -72,13 +66,41 @@ export const SignUp = async (req:Request, res:Response) => {
     
 }
 
+export const Guest = async (req:Request, res:Response) => {
+    // values("${id}","${data.username}","${data.password}","${data.email}");
+
+    // Genarate Name 
+    let num: number = Math.floor(Math.random() * 800);
+    const name: string = "guest" + num;
+    // id 
+    const id:string = nanoid();
+    // password and email is not unique in the db
+    const psd:string = "qwerty";
+    // email 
+    const email:string =name + "@guest.com"
+
+    const data:any = {username:name, password:psd, email}
+    console.log('data :>> ', data);
+    const dbres:boolean = await dbfunc.NewUser(data, id);
+
+    if (dbres) {
+        res.send({name, id})
+    } else {
+        res.send("Try Again").status(500)
+    }
+
+}
 
 export const BrowserInfo = (req:Request, res:Response)=> {
     // res.setHeader('Access-Control-Allow-Origin', 'https://bookmarks-devaxmed.onrender.com');
     console.log(req.userauth);
     res.send(req.userauth);
 }
+//! ________________________________________________________________
 
+
+
+//! BookMark function 
 export const  GetExploreBks = async (req:Request, res:Response) => {
     const Bks = await dbfunc.GetExploreBks();
     console.log(Bks);
@@ -100,7 +122,7 @@ export const GetItems = async (req:Request, res:Response) => {
 
 
 
-// CURD
+//! CURD
 export const AddBk =  async (req:Request, res:Response) => {
     console.log("New Bookmark", req.body);
     
@@ -126,3 +148,5 @@ export const Delete = async (req:Request, res:Response) => {
 
     res.send("Item deleted");
 }
+
+//! _________________________________________________________________

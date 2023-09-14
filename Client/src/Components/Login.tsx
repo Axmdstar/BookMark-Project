@@ -36,6 +36,18 @@ const Login = ({setSigning}:{setSigning: React.Dispatch<React.SetStateAction<boo
         setserverErr(err.response.data);
       })
   }
+
+  const Guest = () =>{
+    console.log("Guest");
+    setLoading(true);
+    axios.post("https://bookmark-devaxmed.onrender.com"+"/Guest",  { withCredentials: true })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
   
   const buttonstyle = "mb-2 block w-full rounded bg-violet-500 px-6 pb-2 pt-2.5 text-xl font-medium uppercase hover:bg-OvsP-p400 leading-normal text-white shadow-violet-800 shadow-lg transition duration-150 ease-in-out  hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-OvsP-p200 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-OvsP-p500 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] "
   
@@ -68,7 +80,11 @@ const Login = ({setSigning}:{setSigning: React.Dispatch<React.SetStateAction<boo
         </button>
 
       </div>
-
+      <p className='
+        cursor-pointer
+      text-orange-500 
+        mx-auto'
+        onClick={() => Guest()}>Sign in as a Guest</p>
     </form>
   );
 }
